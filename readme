@@ -1,0 +1,39 @@
+✅ How FOL is Simulated in Our Code
+We are not using a logic engine like Prolog or Experta. But we’re mimicking FOL behavior like this:
+
+📘 Example Rule in FOL:
+scss
+Copy
+Edit
+HasSymptom(x, fever) ∧ HasSymptom(x, cough) → HasCondition(x, flu)
+🧑‍💻 Corresponding Python Code:
+python
+Copy
+Edit
+for condition, data in knowledge_base.items():
+    match_count = sum(symptom in user_symptoms for symptom in data["symptoms"])
+    if match_count > 0:
+        matched_conditions.append((condition, match_count, data["advice"]))
+This checks:
+
+How many symptoms the user has that match the knowledge base
+
+If enough symptoms match a condition → we infer that condition
+
+💡 So What’s "FOL" Here?
+
+FOL Concept	Your Code Equivalent
+HasSymptom(x, fever)	"fever" in user_symptoms
+∧ (logical AND)	Multiple matches in match_count
+→ HasCondition(x, flu)	Adding "flu" to matched_conditions
+Knowledge base as rules	knowledge_base dictionary
+Logical inference engine	infer_conditions() function
+🔍 Summary
+While this chatbot doesn't use a formal FOL engine, it simulates FOL logic through:
+
+Pattern-based rule definitions (symptoms ⇒ condition)
+
+Logical rule matching (AND-ing symptoms)
+
+Inference output (suggesting diagnosis)
+
